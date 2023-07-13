@@ -5,9 +5,12 @@ let TR={"JPY":0.008,"USD":0,"EUR":0.033,"GBP":0.036,"CNY":0.036};
 
 function GetCurrency(){
     var val= document.getElementById("api-select").value;
-    var Currency = document.getElementById('Currency').value;
+    var Currency = (document.getElementById('Currency').value).replace(/,/g, '');
     var checkbox = document.getElementById('checkbox');
-    console.log(checkbox.checked);
+    var CommaAdder=Currency;
+
+    CommaAdder = CommaAdder.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.getElementById('Currency').value = CommaAdder;
     
     fetch("https://open.er-api.com/v6/latest/THB", {
         method: "GET",
@@ -21,10 +24,10 @@ function GetCurrency(){
           }
           if(Currency!="" && val!="Country?"){
             if(checkbox.checked){
-              document.getElementById('Baht').value = `${((Currency * rated) - (Currency * rated * TR[val])).toFixed(2)} (${(Currency * rated * TR[val]).toFixed(2)} Refunded)`;
+              document.getElementById('Baht').value = `${(((Currency * rated) - (Currency * rated * TR[val])).toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} (${((Currency * rated * TR[val]).toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} Refunded)`;
             }
             else{
-              document.getElementById('Baht').value = `${((Currency * rated)).toFixed(2)}`;
+              document.getElementById('Baht').value = `${(((Currency * rated)).toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
             }
           }
           else if(Currency==""){
