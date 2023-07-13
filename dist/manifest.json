@@ -4,6 +4,8 @@
   "start_url": ".",
   "background_color": "#202124",
   "theme_color": "#3c3d40",
+  "display": "standalone",
+  "description": "An application for calculating currency to Baht",
   "icons": [
     {
       "src": "./icons/manifest-icon-192.maskable.png",
