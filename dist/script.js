@@ -3,6 +3,7 @@ let rated=0;
 let ref=0;
 let TR={"JPY":0.008,"USD":0,"EUR":0.033,"GBP":0.036,"CNY":0.036};
 
+document.addEventListener('DOMContentLoaded', function () {
 function GetCurrency(){
     var val= document.getElementById("api-select").value;
     var Currency = (document.getElementById('Currency').value).replace(/,/g, '');
@@ -39,4 +40,4 @@ function GetCurrency(){
           rate = ERROR;
         });
 }
-
+});
